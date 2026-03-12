@@ -7,8 +7,8 @@ pipeline {
       }
       steps {
         sh 'mvn --version'
-        sh 'javac hello.java'
-        sh 'java Hello'
+        sh 'cd multi-stage-multi-agent && javac hello.java'   // ← fix
+        sh 'cd multi-stage-multi-agent && java Hello'
       }
     }
     stage('Front-end') {
@@ -16,8 +16,8 @@ pipeline {
         docker { image 'node:16-alpine' }
       }
       steps {
-        sh 'node --version'
-        sh 'node hello.js'
+       sh 'node --version'
+        sh 'cd multi-stage-multi-agent && node hello.js' 
       }
     }
   }
